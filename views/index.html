@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+ 
+<body>
+
+<input type="number" id="input" name="quantity" min="0" max="10000000">
+
+    <button onclick="calculate()" class="btn btn-success"> Spin me For Number</button>
+
+<p id="demo"></p>
+
+
+
+<script>
+
+function calculate () {
+
+// this variable take the value from input form 
+    var x = document.getElementById("input").value;
+
+// checking range of inpputed number 
+   
+    if( x > 10000000 || x < 0){  
+       document.getElementById("demo").innerHTML = "Please inputer number in range 0 to 10000000" 
+    }
+//checking range of inpputed number, when in range will execute the below loop 
+    else{
+
+//Setting up variables and converting inputted number to string
+        
+        var output = [],
+        Number = x.toString();
+        digits_used = [],
+        digits_unused = [];
+//taking each digit into array fro inputted no 
+for (var i = 0, len = Number.length; i < len; i += 1) {
+    output.push(+Number.charAt(i));
+}
+
+//initializing up array to have all 0 to 9 number
+var Digits = new Array(10);
+
+//this loop will get the status of all the numbers used in input by user 
+for(var i = 0; i < output.length; i++) {
+
+    switch(output[i]){
+        case 1:
+            Digits[1] = 'true';
+                break;
+        case 2:
+            Digits[2] = 'true';
+                break;
+
+        case 3:
+            Digits[3] = 'true';
+                break;
+        case 4:
+            Digits[4] = 'true';
+                break;
+        case 5:
+            Digits[5] = 'true';
+                break;
+        case 6:
+            Digits[6] = 'true';
+                break;
+
+        case 7:
+            Digits[7] = 'true';
+                break;
+
+        case 8:
+            Digits[8] = 'true';
+                break;
+
+        case 9:
+            Digits[9] = 'true';
+                break;
+        case 0:
+            Digits[0] = 'true';
+                break;
+            
+    }
+
+
+
+}
+
+//this loop will get the digits used in inputted number and populate the array digits_unused
+ //to get the magic number
+
+for ( var i = 0; i < Digits.length; i++){
+
+        if(Digits[i] == 'true'){
+            digits_used.push(i);
+        }
+        else 
+            digits_unused.push(i);
+}
+
+// using math random function to o/p random magic number with unique digits that 
+// are not used in input number
+var item;
+var op = " ";
+
+for( var i = 0; i < Number.length ; i++){
+    item = digits_unused[Math.floor(Math.random()*digits_unused.length)];
+    op = op + item;
+}
+
+// populate the o/p in DOM with unique number of same length of inputted number
+ document.getElementById("demo").innerHTML = op;
+
+}
+}
+
+</script>
+
+</body>
+</html>
